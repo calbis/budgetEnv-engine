@@ -16,10 +16,6 @@
     "serve-favicon": "~2.3.0"
   },
   "description": "BudgetEnv api engine",
-  "main": "app.js",
-  "directories": {
-    "test": "tests"
-  },
   "devDependencies": {
     "chai": "^3.5.0",
     "needle": "^1.4.3"
