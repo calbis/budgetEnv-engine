@@ -6,4 +6,4 @@ node_js:
   - "5"
 before_install: npm install -g mocha
 before_script:
-  - npm start
+  - npm start &
