@@ -18,7 +18,7 @@ describe( "BudgetEnv Engine", function () {
 		} );
 	} );
 
-	describe( "Should get a 404 error when a valid route/file is not found", function () {
+	describe( "Should get a 404 error for an invalid route/file", function () {
 		it( "returns status 404", function ( done ) {
 			needle.get( helper.baseUrl() + 'asdfg.hjk', helper.needleOptions,
 				function ( err, res ) {
