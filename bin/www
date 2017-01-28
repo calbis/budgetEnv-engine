@@ -6,20 +6,32 @@
 
 var app = require('../app');
 var debug = require('debug')('budgetenv-engine:server');
-var http = require('http');
+var https = require('https');
+
+var fs = require('fs');
+var privateKey  = fs.readFileSync('sslcerts/key.pem', 'utf8');
+var certificate = fs.readFileSync('sslcerts/cert.pem', 'utf8');
+
+var credentials = {key: privateKey, cert: certificate};
 
 /**
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3000');
+var port = normalizePort(process.env.HTTPS_PORT || '8443');
 app.set('port', port);
+var httpPort = normalizePort(process.env.HTTP_PORT || '8080');
 
-/**
- * Create HTTP server.
- */
+var http = require('http');
+http.createServer(function (req, res) {
+  var host = req.headers.host;
+  host = host.replace(':' + httpPort, ':' + port);
+    res.writeHead(301, { "Location": "https://" + host + req.url });
+    res.end();
+}).listen(httpPort);
 
-var server = http.createServer(app);
+
+var server = https.createServer(credentials, app);
 
 /**
  * Listen on provided port, on all network interfaces.
@@ -58,9 +70,7 @@ function onError(error) {
     throw error;
   }
 
-  var bind = typeof port === 'string'
-    ? 'Pipe ' + port
-    : 'Port ' + port;
+  var bind = typeof port === 'string' ? 'Pipe ' + port : 'Port ' + port;
 
   // handle specific listen errors with friendly messages
   switch (error.code) {
