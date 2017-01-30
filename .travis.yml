@@ -6,7 +6,6 @@ services:
   mongodb
 before_install:
   - npm install -g mocha
-  - npm install -g node-gyp node-pre-gyp
 before_script:
   - node ./lib/initDb.js
   - npm start &
