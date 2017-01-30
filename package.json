@@ -7,12 +7,18 @@
     "test": "mocha ./tests/ --recursive -R spec"
   },
   "dependencies": {
+    "bcrypt": "^1.0.2",
+    "bluebird": "https://registry.npmjs.org/bluebird/-/bluebird-2.10.2.tgz",
     "body-parser": "~1.15.2",
     "cookie-parser": "~1.4.3",
+    "crypto": "0.0.3",
     "debug": "~2.2.0",
     "express": "~4.14.0",
     "jade": "~1.11.0",
+    "mongoose": "^4.8.0",
     "morgan": "~1.7.0",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
     "serve-favicon": "~2.3.0"
   },
   "description": "BudgetEnv api engine",
