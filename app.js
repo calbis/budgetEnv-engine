@@ -3,11 +3,11 @@ var path = require( 'path' );
 var logger = require( 'morgan' );
 var bodyParser = require( 'body-parser' );
 
-var dbConf = require( './lib/dbConf' );
+var conf = require( './lib/conf' );
 var Promise = require( "bluebird" );
 var mongoose = Promise.promisifyAll( require( "mongoose" ) );
 mongoose.Promise = require( 'bluebird' );
-mongoose.connect( dbConf.url(), dbConf.options );
+mongoose.connect( conf.dbConnectionString(), conf.dbConnectionOptions );
 
 var passport = require( 'passport' );
 require( './lib/passport' )( passport );
