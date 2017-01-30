@@ -7,7 +7,7 @@ var dbConf = require( './lib/dbConf' );
 var Promise = require( "bluebird" );
 var mongoose = Promise.promisifyAll( require( "mongoose" ) );
 mongoose.Promise = require( 'bluebird' );
-mongoose.connect( dbConf.url( process.env ), dbConf.options );
+mongoose.connect( dbConf.url(), dbConf.options );
 
 var passport = require( 'passport' );
 require( './lib/passport' )( passport );
